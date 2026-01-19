@@ -1,1 +1,690 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Birthday Surprise for Shreejal 💕✨</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Dancing+Script:wght@700&family=Patrick+Hand&display=swap" rel="stylesheet">
+  <style>
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body {
+      height: 100vh;
+      background: linear-gradient(135deg, #ffebee, #fff3e0, #e8f5e9);
+      font-family: 'Poppins', sans-serif;
+      color: #333;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+    .bokeh { position: absolute; inset: 0; pointer-events: none; z-index: 1; }
+    .dot {
+      position: absolute;
+      border-radius: 50%;
+      opacity: 0.5;
+      animation: float 25s infinite linear;
+    }
+    @keyframes float {
+      0% { transform: translateY(100vh) scale(0.4); }
+      100% { transform: translateY(-30vh) scale(1.1); }
+    }
+    .cat-sticker {
+      position: absolute;
+      width: 110px;
+      pointer-events: none;
+      animation: wiggle 7s infinite ease-in-out;
+    }
+    @keyframes wiggle { 0%,100% { transform: rotate(-6deg); } 50% { transform: rotate(6deg); } }
+    .container {
+      position: relative;
+      width: 90%;
+      max-width: 520px;
+      background: rgba(255,255,255,0.85);
+      border-radius: 24px;
+      backdrop-filter: blur(18px);
+      box-shadow: 0 25px 70px rgba(0,0,0,0.18);
+      padding: 50px 35px 40px;
+      text-align: center;
+      z-index: 2;
+      transition: opacity 1s ease, transform 1s ease;
+      display: none;
+    }
+    #intro {
+      display: block;
+      opacity: 1;
+      transform: scale(1);
+    }
+    .title-bar {
+      position: absolute;
+      top: -32px; left: 0; right: 0;
+      height: 32px;
+      background: linear-gradient(#e0e0e0, #d0d0d0);
+      border-radius: 24px 24px 0 0;
+      display: flex;
+      align-items: center;
+      padding: 0 12px;
+    }
+    .traffic-lights { display: flex; gap: 9px; }
+    .light { width: 13px; height: 13px; border-radius: 50%; }
+    .red { background: #ff5f56; }
+    .yellow { background: #ffbd2e; }
+    .green { background: #28c93f; }
+    h1 { font-family: 'Dancing Script', cursive; font-size: 4.5rem; color: #e91e63; margin: 15px 0; text-shadow: 3px 3px 12px rgba(233,30,99,0.3); }
+    .small-text { font-size: 1.2rem; color: #444; line-height: 1.7; margin-bottom: 25px; }
+    .tap-text { font-size: 1.4rem; color: #ff4081; font-style: italic; margin: 25px 0 35px; }
+    .gift-btn, .continue-btn, .share-btn, .next-btn {
+      font-size: 1.5rem;
+      padding: 18px 60px;
+      background: linear-gradient(135deg, #ff4081, #f50057);
+      color: white;
+      border: none;
+      border-radius: 70px;
+      cursor: pointer;
+      box-shadow: 0 12px 35px rgba(244,67,54,0.45);
+      transition: all 0.3s;
+      margin: 20px auto;
+      display: block;
+    }
+    .gift-btn:hover, .continue-btn:hover, .share-btn:hover, .next-btn:hover { transform: scale(1.1); box-shadow: 0 18px 45px rgba(244,67,54,0.6); }
+    #game { opacity: 0; transform: scale(0.9); }
+    .game-board { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; width: 320px; margin: 30px auto; }
+    .cell { width: 100px; height: 100px; background: rgba(255,255,255,0.7); border-radius: 20px; display: flex; align-items: center; justify-content: center; font-size: 3.5rem; cursor: pointer; box-shadow: 0 8px 20px rgba(0,0,0,0.1); transition: all 0.3s; }
+    .cell:hover { transform: scale(1.08); box-shadow: 0 12px 30px rgba(255,105,180,0.4); }
+    .cell.selected { background: #fff0f5; border: 3px dashed #ff69b4; animation: pulse 1.5s infinite; }
+    @keyframes pulse { 0%,100% { transform: scale(1); } 50% { transform: scale(1.05); } }
+    .instruction { font-size: 1.4rem; color: #ff4081; margin-top: 20px; font-weight: bold; }
+    #note { opacity: 0; transform: scale(0.9); background: rgba(255,240,245,0.9); border: 4px solid #ff69b4; border-radius: 30px; padding: 60px 40px; }
+    .note-card { background: rgba(255,255,255,0.95); border-radius: 20px; padding: 40px 30px; box-shadow: 0 10px 30px rgba(255,105,180,0.3); position: relative; text-align: left; }
+    .badge { position: absolute; top: -20px; left: 50%; transform: translateX(-50%); background: linear-gradient(135deg, #ff4081, #f50057); color: white; padding: 8px 25px; border-radius: 30px; font-size: 1.1rem; font-weight: bold; box-shadow: 0 5px 15px rgba(244,67,54,0.5); white-space: nowrap; }
+    #songs-page { opacity: 0; transform: scale(0.9); text-align: center; z-index: 2; padding: 50px 35px 40px; }
+    .songs { display: flex; flex-direction: column; gap: 25px; max-width: 450px; margin: 0 auto; }
+    .song-card { background: rgba(255,255,255,0.9); border-radius: 20px; padding: 20px; box-shadow: 0 10px 30px rgba(255,105,180,0.2); display: flex; align-items: center; gap: 20px; transition: transform 0.3s; }
+    .song-card:hover { transform: scale(1.03); }
+    .thumbnail { width: 90px; height: 90px; border-radius: 16px; background: #ffb6c1; display: flex; align-items: center; justify-content: center; font-size: 3rem; box-shadow: inset 0 5px 15px rgba(0,0,0,0.1); }
+    .info { flex: 1; text-align: left; }
+    .song-title-btn { background: none; border: none; font-size: 1.4rem; color: #c2185b; font-weight: 600; cursor: pointer; text-align: left; padding: 0; margin-bottom: 8px; transition: color 0.3s; }
+    .song-title-btn:hover { color: #e91e63; text-decoration: underline; }
+    .status { font-size: 0.9rem; color: #666; margin-bottom: 8px; min-height: 20px; font-style: italic; }
+    .timer { font-size: 0.85rem; color: #888; background: #fff0f5; padding: 4px 10px; border-radius: 20px; display: inline-block; margin-bottom: 10px; }
+    .progress { height: 6px; background: #ffebee; border-radius: 3px; overflow: hidden; margin-bottom: 8px; }
+    .progress-bar { height: 100%; width: 0%; background: linear-gradient(90deg, #ff4081, #f50057); transition: width 0.3s; }
+    .reel-text { font-size: 0.8rem; color: #999; text-align: center; font-style: italic; }
+    #share-page { opacity: 0; transform: scale(0.9); background: rgba(255,240,245,0.9); border: 4px solid #ff69b4; border-radius: 30px; padding: 50px 35px 40px; }
+    #share-page h1 { font-size: 3.8rem; color: #c2185b; margin: 20px 0 40px; }
+    .notebook-page {
+      opacity: 0;
+      transform: scale(0.9);
+      background: url('https://images.unsplash.com/photo-1519681393784-d120267933ba?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80') center/cover;
+      background-blend-mode: overlay;
+      background-color: rgba(255,245,238,0.85);
+      border: 4px solid #d7ccc8;
+      border-radius: 30px;
+      padding: 50px 35px 40px;
+      overflow-y: auto;
+      display: none;
+      position: relative;
+      width: 90%;
+      max-width: 520px;
+      box-shadow: 0 25px 70px rgba(0,0,0,0.18);
+      z-index: 2;
+      text-align: center;
+    }
+    .notebook {
+      background: rgba(255,253,240,0.95);
+      border: 8px solid #d7ccc8;
+      border-radius: 10px 40px 10px 40px;
+      padding: 50px 40px;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+      transform: scale(0.8);
+      opacity: 0;
+      transition: all 1.5s ease-out;
+      font-family: 'Patrick Hand', cursive;
+      font-size: 1.8rem;
+      color: #3e2723;
+      line-height: 1.9;
+      text-align: left;
+      margin: 20px auto;
+      max-width: 90%;
+    }
+    .notebook.show {
+      transform: scale(1);
+      opacity: 1;
+    }
+    .writing {
+      overflow: hidden;
+      white-space: pre-wrap;
+      animation: typing 20s steps(200) forwards;
+      border-right: 3px solid #3e2723;
+    }
+    @keyframes typing {
+      from { width: 0; }
+      to { width: 100%; }
+    }
+    .back-btn {
+      font-size: 1.5rem;
+      padding: 18px 60px;
+      background: linear-gradient(135deg, #ff4081, #f50057);
+      color: white;
+      border: none;
+      border-radius: 70px;
+      cursor: pointer;
+      box-shadow: 0 12px 35px rgba(244,67,54,0.45);
+      transition: all 0.3s;
+      margin: 20px auto;
+      display: block;
+    }
+    .back-btn:hover { transform: scale(1.1); box-shadow: 0 18px 45px rgba(244,67,54,0.6); }
+    #envelope-page { opacity: 0; transform: scale(0.9); background: rgba(255,240,245,0.9); border: 4px solid #ff69b4; border-radius: 30px; padding: 50px 35px 40px; }
+    .envelope {
+      width: 320px;
+      height: 220px;
+      background: linear-gradient(to bottom, #ffc1e3, #ff80ab);
+      border-radius: 20px 20px 100px 100px / 20px 20px 40px 40px;
+      margin: 0 auto 30px;
+      position: relative;
+      cursor: pointer;
+      box-shadow: 0 15px 40px rgba(244,67,54,0.3);
+      transition: transform 0.6s;
+    }
+    .envelope:hover { transform: scale(1.05); }
+    .envelope::before {
+      content: "";
+      position: absolute;
+      top: -40px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 0;
+      height: 0;
+      border-left: 60px solid transparent;
+      border-right: 60px solid transparent;
+      border-bottom: 80px solid #ff80ab;
+    }
+    .envelope .heart {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 5rem;
+      color: #fff;
+      text-shadow: 0 0 15px rgba(255,255,255,0.8);
+    }
+    #diary-page { opacity: 0; transform: scale(0.9); background: rgba(255,240,245,0.9); border: 4px solid #ff69b4; border-radius: 30px; padding: 50px 35px 40px; }
+    .diary-book {
+      width: 90%;
+      max-width: 460px;
+      height: 320px;
+      margin: 40px auto;
+      position: relative;
+      perspective: 1500px;
+    }
+    .page {
+      position: absolute;
+      width: 50%;
+      height: 100%;
+      background: rgba(255,253,240,0.97);
+      border: 2px solid #d7ccc8;
+      box-shadow: 0 0 20px rgba(0,0,0,0.15);
+      padding: 40px 30px;
+      font-family: 'Patrick Hand', cursive;
+      font-size: 1.9rem;
+      color: #3e2723;
+      line-height: 1.6;
+      backface-visibility: hidden;
+      transition: transform 1.8s;
+      transform-origin: left;
+      white-space: pre-wrap;
+    }
+    .page.right {
+      left: 50%;
+      transform-origin: right;
+    }
+    .page.flipped {
+      transform: rotateY(-180deg);
+    }
+    .final-message {
+      text-align: center;
+      font-size: 2.1rem;
+      margin-top: 60px;
+      color: #c2185b;
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.1);
+    }
+    #final-question-page { opacity: 0; transform: scale(0.9); background: rgba(255,240,245,0.9); border: 4px solid #ff69b4; border-radius: 30px; padding: 50px 35px 40px; }
+    #celebration { display: none; position: fixed; inset: 0; background: rgba(255,245,238,0.85); z-index: 999; overflow: hidden; pointer-events: none; }
+    .celebration-text { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 6rem; color: #e91e63; text-shadow: 3px 3px 10px rgba(0,0,0,0.2); animation: bounce 2s infinite; }
+    .celebration-gif { position: absolute; width: 150px; opacity: 0.9; pointer-events: none; animation: bounce 2s infinite; }
+    @keyframes bounce { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-20px); } }
+    @keyframes shake { 0% { transform: translateX(0); } 25% { transform: translateX(-10px); } 50% { transform: translateX(10px); } 75% { transform: translateX(-10px); } 100% { transform: translateX(0); } }
+  </style>
+</head>
+<body>
+  <div class="bokeh" id="bokeh"></div>
+  <!-- Cat stickers -->
+ 
+  <!-- Intro -->
+  <div id="intro" class="container">
+    <div class="title-bar">
+      <div class="traffic-lights">
+        <div class="light red"></div>
+        <div class="light yellow"></div>
+        <div class="light green"></div>
+      </div>
+    </div>
+    <img src="https://usagif.com/wp-content/uploads/gif/hapby-cat-19.gif" style="width:220px; margin:0 auto 25px; display:block; border-radius:16px; box-shadow:0 8px 25px rgba(0,0,0,0.15);" alt="Happy Birthday Kitten">
+    <p class="small-text" style="font-size:1.4rem; color:#e91e63; margin-bottom:12px;">
+      a little birthday thought... 🎂💖
+    </p>
+    <h1>Shrejjal👉👈</h1>
+    <p class="small-text">
+      I wanted to do a tiny something this Birthday,<br>
+      because you mean a lot to me. 🥰💕
+    </p>
+    <p class="tap-text">
+      Tap below, okay? ✨
+    </p>
+    <button class="gift-btn" onclick="startGame()">Open Your Gift → 🎁</button>
+  </div>
+  <!-- Game -->
+  <div id="game" class="container">
+    <div class="title-bar">
+      <div class="traffic-lights">
+        <div class="light red"></div>
+        <div class="light yellow"></div>
+        <div class="light green"></div>
+      </div>
+    </div>
+    <p style="font-size:1.4rem; color:#e91e63; margin-bottom:10px;">A quick game first...</p>
+    <h2>Sweet Tic-Tac-Toe</h2>
+    <div class="game-board">
+      <div class="cell" onclick="placeCookie(this)"><img src="https://img.icons8.com/emoji/96/000000/lollipop-emoji.png" style="width:60px;" alt="Lollipop"></div>
+      <div class="cell" onclick="placeCookie(this)"><img src="https://img.icons8.com/emoji/96/000000/cupcake-emoji.png" style="width:60px;" alt="Cupcake"></div>
+      <div class="cell" onclick="placeCookie(this)"><img src="https://img.icons8.com/emoji/96/000000/cookie-emoji.png" style="width:60px;" alt="Cookie"></div>
+      <div class="cell" onclick="placeCookie(this)"><img src="https://img.icons8.com/emoji/96/000000/doughnut-emoji.png" style="width:60px;" alt="Donut"></div>
+      <div class="cell" onclick="placeCookie(this)"><img src="https://img.icons8.com/emoji/96/000000/cookie-emoji.png" style="width:60px;" alt="Cookie"></div>
+      <div class="cell" onclick="placeCookie(this)"><img src="https://img.icons8.com/emoji/96/000000/cake-emoji.png" style="width:60px;" alt="Cake"></div>
+      <div class="cell" onclick="placeCookie(this)"><img src="https://img.icons8.com/emoji/96/000000/candy-emoji.png" style="width:60px;" alt="Candy"></div>
+      <div class="cell" onclick="placeCookie(this)"><img src="https://img.icons8.com/emoji/96/000000/ice-cream-emoji.png" style="width:60px;" alt="Ice Cream"></div>
+      <div class="cell" onclick="placeCookie(this)"><img src="https://img.icons8.com/emoji/96/000000/chocolate-bar-emoji.png" style="width:60px;" alt="Chocolate"></div>
+    </div>
+    <p class="instruction">PLACE THE COOKIE TO CONTINUE 🍪</p>
+  </div>
+  <!-- Note -->
+  <div id="note" class="container">
+    <div class="title-bar">
+      <div class="traffic-lights">
+        <div class="light red"></div>
+        <div class="light yellow"></div>
+        <div class="light green"></div>
+      </div>
+    </div>
+    <p style="font-size:1.3rem; color:#ff69b4; margin-bottom:10px;">
+      Wrapped straight from my heart 💌
+    </p>
+    <h1>A Birthday Note 🎂💖</h1>
+    <div class="note-card" style="background: rgba(255,255,255,0.95); border-radius: 20px; padding: 40px 30px; box-shadow: 0 10px 30px rgba(255,105,180,0.3); position: relative; text-align: left;">
+      <div class="badge" style="position: absolute; top: -20px; left: 50%; transform: translateX(-50%); background: linear-gradient(135deg, #ff4081, #f50057); color: white; padding: 8px 25px; border-radius: 30px; font-size: 1.1rem; font-weight: bold; box-shadow: 0 5px 15px rgba(244,67,54,0.5); white-space: nowrap;">MY SWEETEST LOVE 💗</div>
+      <h3>Hey Shreejal,</h3>
+      <p>The most beautiful day for the most beautiful person in the world 🎀💗</p>
+      <p style="text-align:center; font-style:italic; margin-top:30px; color:#c2185b;">
+        Always yours ♡
+      </p>
+      <img src="https://media.tenor.com/2v0q6yG8ZfEAAAAi/cat-christmas.gif" style="width:120px; position:absolute; top:-40px; right:-20px;" alt="Cute Kitten">
+    </div>
+    <button class="continue-btn" onclick="showSongs()">Continue ✨</button>
+  </div>
+  <!-- Songs -->
+  <div id="songs-page" class="container">
+    <div class="title-bar">
+      <div class="traffic-lights">
+        <div class="light red"></div>
+        <div class="light yellow"></div>
+        <div class="light green"></div>
+      </div>
+    </div>
+    <p class="sub" style="font-size:1.3rem; color:#ff69b4; font-style: italic; margin-bottom:10px;">Soft, warm & full of feeling</p>
+    <h1>Songs That Feel Like Birthday<br>With You 🎶</h1>
+    <div class="songs">
+      <div class="song-card" id="card1">
+        <div class="thumbnail">🐱</div>
+        <div class="info">
+          <button class="song-title-btn" onclick="playSong('highOnYou', 'card1')">High On You</button>
+          <p class="status" id="status1"></p>
+          <div class="timer">00:00 / 00:00</div>
+          <div class="progress"><div class="progress-bar" id="progress1"></div></div>
+          <p class="reel-text">REEL TO REEL</p>
+        </div>
+      </div>
+      <div class="song-card" id="card2">
+        <div class="thumbnail">🎂</div>
+        <div class="info">
+          <button class="song-title-btn" onclick="playSong('forAReason', 'card2')">For a Reason</button>
+          <p class="status" id="status2"></p>
+          <div class="timer">00:00 / 00:00</div>
+          <div class="progress"><div class="progress-bar" id="progress2"></div></div>
+          <p class="reel-text">REEL TO REEL</p>
+        </div>
+      </div>
+      <div class="song-card" id="card3">
+        <div class="thumbnail">🐹</div>
+        <div class="info">
+          <button class="song-title-btn" onclick="playSong('dilKaJoHaal', 'card3')">Dil ka Jo Haal hai</button>
+          <p class="status" id="status3"></p>
+          <div class="timer">00:00 / 00:00</div>
+          <div class="progress"><div class="progress-bar" id="progress3"></div></div>
+          <p class="reel-text">REEL TO REEL</p>
+        </div>
+      </div>
+    </div>
+    <button class="next-btn" onclick="showSharePage()">Next → ✨</button>
+  </div>
+  <!-- Share Page -->
+  <div id="share-page" class="container">
+    <div class="title-bar">
+      <div class="traffic-lights">
+        <div class="light red"></div>
+        <div class="light yellow"></div>
+        <div class="light green"></div>
+      </div>
+    </div>
+    <p class="sub" style="font-size:1.4rem; color:#ff69b4; margin-bottom:10px;">
+      the grand finale...
+    </p>
+    <h1>I want to share a few things</h1>
+    <div style="margin: 40px 0;">
+      <button class="share-btn" onclick="showFriendsPage()">
+        My favorite part of us being friends
+      </button>
+      <button class="share-btn" onclick="showRememberPage()">
+        Do you remember
+      </button>
+      <button class="share-btn" onclick="showMistakesPage()">
+        Mistakes I have done!!!
+      </button>
+      <button class="next-btn" onclick="goToEnvelope()" style="margin-top: 20px;">
+        Next → 💌
+      </button>
+    </div>
+  </div>
+  <!-- Friends Notebook -->
+  <div id="friends-notebook" class="notebook-page">
+    <div class="title-bar">
+      <div class="traffic-lights">
+        <div class="light red"></div>
+        <div class="light yellow"></div>
+        <div class="light green"></div>
+      </div>
+    </div>
+    <div class="notebook">
+      <div class="writing">
+Maine raipur mai bouth kam he dost banye pr jitne bhi hai mujhe support krne ke liye enough hai .....HAA!! mana ab sirf kuch he hai jo phele ki thereh he mujhe apna bhi dost mante hai... JESE KI!!!!! Shreejal, Anikshit aur Anmol. And you shreejal I have spend my most lovable time with you..every second felt special...mai janta hu tume creepy lg reha hoga😅.but trust me evry word you see on the site maine apni puri feelings ke sath likha .....NOTHING RUBBISH..unlesh you see any🙂😶
+      </div>
+    </div>
+    <button class="back-btn" onclick="goBackToShare()">Back to Share ✨</button>
+  </div>
+  <!-- Remember Notebook -->
+  <div id="remember-notebook" class="notebook-page">
+    <div class="title-bar">
+      <div class="traffic-lights">
+        <div class="light red"></div>
+        <div class="light yellow"></div>
+        <div class="light green"></div>
+      </div>
+    </div>
+    <div class="notebook">
+      <div class="writing">
+Mai janta hu teri memory kafi acchi hai 😌, but still mai woh PRS wale time sabse jada miss krta hu.... class khatam hone ke baad hum thora late he ghar jate the😁..daant toh kabhi nahi sunni pr darr lgta tha...but still woh time spend krna accha lgta tha..Aur bhayyy jb mai tumhare ghar aaya tha!!!! ek toh late ho gya aur upper se meri gaddi band..!!!! maine tumhe kabhi batya nahi tha pr mai or anmol dono jab ghar pauche toh dono ki mummy aur papa gate pr he the🤐🤐..... aur!! fir jo KOOTE hume uuuhaa!!! but still worth it!!!! ofc humne late night wattsapp chats bhi kari hai😄😄 aur toh aur yaad hai mai aur tu ek baar khade ho kr baat kr rehe the aur woh aunty dekh rehi thi apne ghar se..fir tune kaha chlo ab hum ghar jate hai but jese he tu apni scotty se thora sa aage gai mai cycle se slipp kr ke girr gya....maine bulaya tujhe pr tune dekha he nahi🙄🙄
+      </div>
+    </div>
+    <button class="back-btn" onclick="goBackToShare()">Back to Share ✨</button>
+  </div>
+  <!-- Mistakes Notebook -->
+  <div id="mistakes-notebook" class="notebook-page">
+    <div class="title-bar">
+      <div class="traffic-lights">
+        <div class="light red"></div>
+        <div class="light yellow"></div>
+        <div class="light green"></div>
+      </div>
+    </div>
+    <div class="notebook">
+      <div class="writing">
+Mistakes ki toh pucho he matt....mai batate batate ade se jada bhul he jaunga!!!!😂 but still Mai apni sari galtiya jisse kabhi bhi tujhe hurt hua ho .... jo ki i know main krta he hhu...mai hu ideot, buddhu, kamm dimag ka......jo bhi tu khena pasnd kre!! Sorry
+      </div>
+    </div>
+    <button class="back-btn" onclick="goBackToShare()">Back to Share ✨</button>
+  </div>
+  <!-- Envelope Page -->
+  <div id="envelope-page" class="container">
+    <div class="title-bar">
+      <div class="traffic-lights">
+        <div class="light red"></div>
+        <div class="light yellow"></div>
+        <div class="light green"></div>
+      </div>
+    </div>
+    <p style="font-size:1.3rem; color:#ff69b4; margin-bottom:10px;">
+      Wrapped straight from my heart 💌
+    </p>
+    <h1>A Birthday Note 🎂💖</h1>
+    <div class="envelope" onclick="openDiary()">
+      <div class="heart">💕</div>
+    </div>
+    <p class="tap-text">Tap to open ✨</p>
+  </div>
+  <!-- Diary Page -->
+  <div id="diary-page" class="container">
+    <div class="title-bar">
+      <div class="traffic-lights">
+        <div class="light red"></div>
+        <div class="light yellow"></div>
+        <div class="light green"></div>
+      </div>
+    </div>
+    <h1>A Birthday Note for madam jii 🎂💖</h1>
+    <div class="diary-book" id="diaryBook">
+      <div class="page" style="z-index:4;">Dear Shreejal...</div>
+      <div class="page right" style="z-index:3;">Every moment with you feels so special...</div>
+      <div class="page" style="z-index:2;">Your smile, your laugh, everything...</div>
+      <div class="page right final-message" id="finalPage" style="z-index:1;">
+Wishing you a very very HAPPY BIRTHDAY KIKU 💖✨
+......I hope tumhe mere yeh thore se efforts pasnd aaye ...
+and please if you find it creapy then mujhko maaf kr dena please🙏😭😭
+      </div>
+    </div>
+    <button class="continue-btn" onclick="goToFinalQuestion()">Continue ✨</button>
+  </div>
+  <!-- Final Question Page -->
+  <div id="final-question-page" class="container">
+    <div class="title-bar">
+      <div class="traffic-lights">
+        <div class="light red"></div>
+        <div class="light yellow"></div>
+        <div class="light green"></div>
+      </div>
+    </div>
+    <h1>One Last Thing... 🥺</h1>
+    <p class="small-text" style="font-size:1.6rem;">mujhe bhi apni birthday party mai bula ne nah please🥺🥺</p>
+    <button class="gift-btn" onclick="celebrateYes()">YES 🎉</button>
+    <button class="gift-btn" id="noBtn" onclick="handleNo()" style="background: linear-gradient(135deg, #f44336, #e57373);">NO 😔</button>
+    <p id="warning" style="display:none; color:#f44336; font-size:1.4rem; margin-top:20px; font-weight:bold;">SOCH LE.....!!! thora sa dimag ka istamal kr n</p>
+    <div id="celebration" style="display:none; position:absolute; top:0; left:0; width:100%; height:100%; background: rgba(255,255,255,0.8); z-index:10;">
+      <!-- GIFs will be added dynamically -->
+    </div>
+  </div>
+  <!-- Audio -->
+  <audio id="highOnYou" crossorigin="anonymous" src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_6d4c8d6d8d.mp3?filename=happy-birthday-to-you-135666.mp3"></audio>
+  <audio id="forAReason" crossorigin="anonymous" src="https://cdn.pixabay.com/download/audio/2022/05/13/audio_4d7c8e6e6c.mp3?filename=soft-happy-background-112342.mp3"></audio>
+  <audio id="dilKaJoHaal" crossorigin="anonymous" src="https://assets.mixkit.co/sfx/preview/mixkit-happy-birthday-melodic-tune-2849.mp3"></audio>
+  <script>
+    let currentAudio = null;
+    let currentCardId = null;
+    function createDot() {
+      const dot = document.createElement("div");
+      dot.classList.add("dot");
+      dot.style.width = dot.style.height = (Math.random()*22 + 12) + "px";
+      dot.style.background = ["#ff9a9e","#fad0c4","#a18cd1","#fbc2eb","#ffecb3"][Math.floor(Math.random()*5)];
+      dot.style.left = Math.random()*100 + "vw";
+      dot.style.animationDuration = (Math.random()*18 + 18) + "s";
+      dot.style.animationDelay = Math.random()*6 + "s";
+      document.getElementById("bokeh").appendChild(dot);
+      setTimeout(() => dot.remove(), 45000);
+    }
+    setInterval(createDot, 700);
+    function transitionFromTo(fromId, toId) {
+      const from = document.getElementById(fromId);
+      const to = document.getElementById(toId);
+      from.style.opacity = "0";
+      from.style.transform = "scale(0.9)";
+      setTimeout(() => {
+        from.style.display = "none";
+        to.style.display = "block";
+        setTimeout(() => {
+          to.style.opacity = "1";
+          to.style.transform = "scale(1)";
+        }, 100);
+      }, 1000);
+    }
+    function startGame() {
+      transitionFromTo("intro", "game");
+    }
+    function placeCookie(cell) {
+      cell.innerHTML = "✨";
+      cell.style.background = "#fff0f5";
+      cell.style.border = "3px solid #ff69b4";
+      cell.style.animation = "none";
+      setTimeout(() => transitionFromTo("game", "note"), 800);
+    }
+    function showSongs() {
+      transitionFromTo("note", "songs-page");
+    }
+    function showSharePage() {
+      stopAllSongs();
+      transitionFromTo("songs-page", "share-page");
+    }
+    function showFriendsPage() {
+      transitionFromTo("share-page", "friends-notebook");
+      setTimeout(() => document.querySelector('#friends-notebook .notebook').classList.add('show'), 300);
+    }
+    function showRememberPage() {
+      transitionFromTo("share-page", "remember-notebook");
+      setTimeout(() => document.querySelector('#remember-notebook .notebook').classList.add('show'), 300);
+    }
+    function showMistakesPage() {
+      transitionFromTo("share-page", "mistakes-notebook");
+      setTimeout(() => document.querySelector('#mistakes-notebook .notebook').classList.add('show'), 300);
+    }
+    function goBackToShare() {
+      document.querySelectorAll('.notebook-page').forEach(page => {
+        page.style.opacity = "0";
+        page.style.transform = "scale(0.9)";
+        const notebook = page.querySelector('.notebook');
+        if (notebook) notebook.classList.remove('show');
+      });
+      setTimeout(() => {
+        document.querySelectorAll('.notebook-page').forEach(page => page.style.display = "none");
+        const share = document.getElementById("share-page");
+        share.style.display = "block";
+        setTimeout(() => {
+          share.style.opacity = "1";
+          share.style.transform = "scale(1)";
+        }, 50);
+      }, 800);
+    }
+    function playSong(audioId, cardId) {
+      stopAllSongs();
+      const audio = document.getElementById(audioId);
+      const status = document.getElementById("status" + cardId.slice(-1));
+      const progress = document.getElementById("progress" + cardId.slice(-1));
+      const timer = document.querySelector(`#${cardId} .timer`);
+      if (!audio) {
+        status.textContent = "Sorry, song can't be loaded... 😿";
+        return;
+      }
+      currentAudio = audio;
+      currentCardId = cardId;
+      audio.play().then(() => {
+        status.textContent = "Now playing ♡";
+      }).catch(e => {
+        console.error(e);
+        status.textContent = "Can't play (probably CORS or network issue) 😿";
+      });
+      audio.ontimeupdate = () => {
+        if (audio.duration) {
+          const percent = (audio.currentTime / audio.duration) * 100;
+          progress.style.width = percent + "%";
+          const current = formatTime(audio.currentTime);
+          const total = formatTime(audio.duration);
+          timer.textContent = `${current} / ${total}`;
+        }
+      };
+      audio.onended = () => {
+        status.textContent = "Finished ♡";
+        progress.style.width = "0%";
+        timer.textContent = "00:00 / " + formatTime(audio.duration);
+      };
+    }
+    function stopAllSongs() {
+      document.querySelectorAll('audio').forEach(a => {
+        a.pause();
+        a.currentTime = 0;
+      });
+      document.querySelectorAll('.status').forEach(s => {
+        s.textContent = "";
+      });
+      document.querySelectorAll('.progress-bar').forEach(p => {
+        p.style.width = "0%";
+      });
+    }
+    function formatTime(seconds) {
+      const min = Math.floor(seconds / 60);
+      const sec = Math.floor(seconds % 60);
+      return `${min.toString().padStart(2,'0')}:${sec.toString().padStart(2,'0')}`;
+    }
+    function goToEnvelope() {
+      transitionFromTo("share-page", "envelope-page");
+    }
+    function openDiary() {
+      transitionFromTo("envelope-page", "diary-page");
+      const pages = document.querySelectorAll('.diary-book .page');
+      setTimeout(() => pages[0].classList.add('flipped'), 1000);
+      setTimeout(() => pages[1].classList.add('flipped'), 2000);
+      setTimeout(() => pages[2].classList.add('flipped'), 3000);
+    }
+    function goToFinalQuestion() {
+      transitionFromTo("diary-page", "final-question-page");
+    }
+    function celebrateYes() {
+      const celebration = document.getElementById('celebration');
+      celebration.style.display = 'block';
+      celebration.innerHTML = '<div class="celebration-text">🎉🥳 Happy vday KIKU 🥳🎉✨</div>';
+      const gifs = [
+        'https://media.tenor.com/YmAOhktmGbsAAAAC/dancing-cat.gif',
+        'https://media.tenor.com/2tBAp0I0K4oAAAAC/happy-dance.gif',
+        'https://media.tenor.com/5d9Z6vG3Z1AAAAAC/cheer-up-party.gif',
+        'https://media.tenor.com/7b8jW8jW8jIAAAAC/cute-dance.gif',
+        'https://media.tenor.com/3k3k3k3k3kAAAAC/party-popper-cute.gif'
+      ];
+      gifs.forEach((src, i) => {
+        const img = document.createElement('img');
+        img.src = src;
+        img.className = 'celebration-gif';
+        img.style.left = Math.random() * 80 + 10 + '%';
+        img.style.top = Math.random() * 80 + 10 + '%';
+        img.style.animationDelay = i * 0.5 + 's';
+        celebration.appendChild(img);
+      });
+      // Disable NO button after YES
+      document.getElementById('noBtn').disabled = true;
+    }
+    function handleNo() {
+      document.getElementById('warning').style.display = 'block';
+      document.getElementById('noBtn').style.animation = 'shake 0.8s';
+      setTimeout(() => {
+        document.getElementById('warning').style.display = 'none';
+        document.getElementById('noBtn').style.animation = 'none';
+      }, 3000);
+    }
+  </script>
+</body>
+</html>
 
