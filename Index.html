@@ -97,8 +97,8 @@
     #note { opacity: 0; transform: scale(0.9); background: rgba(255,240,245,0.9); border: 4px solid #ff69b4; border-radius: 30px; padding: 60px 40px; }
     .note-card { background: rgba(255,255,255,0.95); border-radius: 20px; padding: 40px 30px; box-shadow: 0 10px 30px rgba(255,105,180,0.3); position: relative; text-align: left; }
     .badge { position: absolute; top: -20px; left: 50%; transform: translateX(-50%); background: linear-gradient(135deg, #ff4081, #f50057); color: white; padding: 8px 25px; border-radius: 30px; font-size: 1.1rem; font-weight: bold; box-shadow: 0 5px 15px rgba(244,67,54,0.5); white-space: nowrap; }
-    #songs-page { opacity: 0; transform: scale(0.9); text-align: center; z-index: 2; padding: 40px 20px; }
-    .songs { display: flex; flex-direction: column; gap: 25px; max-width: 600px; margin: 0 auto; }
+    #songs-page { opacity: 0; transform: scale(0.9); text-align: center; z-index: 2; padding: 50px 35px 40px; }
+    .songs { display: flex; flex-direction: column; gap: 25px; max-width: 450px; margin: 0 auto; }
     .song-card { background: rgba(255,255,255,0.9); border-radius: 20px; padding: 20px; box-shadow: 0 10px 30px rgba(255,105,180,0.2); display: flex; align-items: center; gap: 20px; transition: transform 0.3s; }
     .song-card:hover { transform: scale(1.03); }
     .thumbnail { width: 90px; height: 90px; border-radius: 16px; background: #ffb6c1; display: flex; align-items: center; justify-content: center; font-size: 3rem; box-shadow: inset 0 5px 15px rgba(0,0,0,0.1); }
@@ -110,10 +110,9 @@
     .progress { height: 6px; background: #ffebee; border-radius: 3px; overflow: hidden; margin-bottom: 8px; }
     .progress-bar { height: 100%; width: 0%; background: linear-gradient(90deg, #ff4081, #f50057); transition: width 0.3s; }
     .reel-text { font-size: 0.8rem; color: #999; text-align: center; font-style: italic; }
-    #share-page { opacity: 0; transform: scale(0.9); background: rgba(255,240,245,0.9); border: 4px solid #ff69b4; border-radius: 30px; padding: 60px 40px; }
+    #share-page { opacity: 0; transform: scale(0.9); background: rgba(255,240,245,0.9); border: 4px solid #ff69b4; border-radius: 30px; padding: 50px 35px 40px; }
     #share-page h1 { font-size: 3.8rem; color: #c2185b; margin: 20px 0 40px; }
     .notebook-page {
-      display: none;
       opacity: 0;
       transform: scale(0.9);
       background: url('https://images.unsplash.com/photo-1519681393784-d120267933ba?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80') center/cover;
@@ -121,8 +120,15 @@
       background-color: rgba(255,245,238,0.85);
       border: 4px solid #d7ccc8;
       border-radius: 30px;
-      padding: 60px 40px;
+      padding: 50px 35px 40px;
       overflow-y: auto;
+      display: none;
+      position: relative;
+      width: 90%;
+      max-width: 520px;
+      box-shadow: 0 25px 70px rgba(0,0,0,0.18);
+      z-index: 2;
+      text-align: center;
     }
     .notebook {
       background: rgba(255,253,240,0.95);
@@ -140,22 +146,16 @@
       text-align: left;
       margin: 20px auto;
       max-width: 90%;
-      overflow-y: auto;
-      max-height: 70vh;
     }
     .notebook.show {
       transform: scale(1);
       opacity: 1;
     }
     .writing {
-      white-space: pre-wrap;
-      border-right: 3px solid #3e2723;
-      word-wrap: break-word;
-      overflow-wrap: break-word;
       overflow: hidden;
-    }
-    .writing.typing {
+      white-space: pre-wrap;
       animation: typing 20s steps(200) forwards;
+      border-right: 3px solid #3e2723;
     }
     @keyframes typing {
       from { width: 0; }
@@ -175,7 +175,7 @@
       display: block;
     }
     .back-btn:hover { transform: scale(1.1); box-shadow: 0 18px 45px rgba(244,67,54,0.6); }
-    #envelope-page { opacity: 0; transform: scale(0.9); background: rgba(255,240,245,0.9); border: 4px solid #ff69b4; border-radius: 30px; padding: 60px 40px; }
+    #envelope-page { opacity: 0; transform: scale(0.9); background: rgba(255,240,245,0.9); border: 4px solid #ff69b4; border-radius: 30px; padding: 50px 35px 40px; }
     .envelope {
       width: 320px;
       height: 220px;
@@ -209,7 +209,7 @@
       color: #fff;
       text-shadow: 0 0 15px rgba(255,255,255,0.8);
     }
-    #diary-page { opacity: 0; transform: scale(0.9); background: rgba(255,240,245,0.9); border: 4px solid #ff69b4; border-radius: 30px; padding: 60px 40px; }
+    #diary-page { opacity: 0; transform: scale(0.9); background: rgba(255,240,245,0.9); border: 4px solid #ff69b4; border-radius: 30px; padding: 50px 35px 40px; }
     .diary-book {
       width: 90%;
       max-width: 460px;
@@ -249,48 +249,18 @@
       color: #c2185b;
       text-shadow: 1px 1px 3px rgba(0,0,0,0.1);
     }
-    #final-question-page { opacity: 0; transform: scale(0.9); background: rgba(255,240,245,0.9); border: 4px solid #ff69b4; border-radius: 30px; padding: 60px 40px; }
+    #final-question-page { opacity: 0; transform: scale(0.9); background: rgba(255,240,245,0.9); border: 4px solid #ff69b4; border-radius: 30px; padding: 50px 35px 40px; }
     #celebration { display: none; position: fixed; inset: 0; background: rgba(255,245,238,0.85); z-index: 999; overflow: hidden; pointer-events: none; }
     .celebration-text { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 6rem; color: #e91e63; text-shadow: 3px 3px 10px rgba(0,0,0,0.2); animation: bounce 2s infinite; }
     .celebration-gif { position: absolute; width: 150px; opacity: 0.9; pointer-events: none; animation: bounce 2s infinite; }
     @keyframes bounce { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-20px); } }
     @keyframes shake { 0% { transform: translateX(0); } 25% { transform: translateX(-10px); } 50% { transform: translateX(10px); } 75% { transform: translateX(-10px); } 100% { transform: translateX(0); } }
-
-    /* Mobile optimizations */
-    @media (max-width: 600px) {
-      .container { padding: 40px 20px 30px; }
-      h1 { font-size: 3.5rem; }
-      .small-text { font-size: 1rem; }
-      .tap-text { font-size: 1.2rem; }
-      .gift-btn, .continue-btn, .share-btn, .next-btn, .back-btn {
-        padding: 15px 40px;
-        font-size: 1.3rem;
-      }
-      .game-board { width: 100%; max-width: 320px; }
-      .cell {
-        width: 100%;
-        height: 0;
-        padding-bottom: 100%;
-        font-size: 2.5rem;
-      }
-      .cell img { width: 50px; }
-      .notebook {
-        font-size: 1.5rem;
-        padding: 40px 25px;
-        max-height: 65vh;
-      }
-      .notebook-page { padding: 40px 20px; }
-      .envelope { width: 280px; height: 190px; }
-      .diary-book { height: 280px; }
-      .page { font-size: 1.6rem; padding: 30px 25px; }
-    }
   </style>
 </head>
 <body>
   <div class="bokeh" id="bokeh"></div>
   <!-- Cat stickers -->
-  
-  
+ 
   <!-- Intro -->
   <div id="intro" class="container">
     <div class="title-bar">
@@ -302,9 +272,9 @@
     </div>
     <img src="https://usagif.com/wp-content/uploads/gif/hapby-cat-19.gif" style="width:220px; margin:0 auto 25px; display:block; border-radius:16px; box-shadow:0 8px 25px rgba(0,0,0,0.15);" alt="Happy Birthday Kitten">
     <p class="small-text" style="font-size:1.4rem; color:#e91e63; margin-bottom:12px;">
-      a little birthday thought Aryan ki traff s... 🎂💖
+      a little birthday thought... 🎂💖
     </p>
-    <h1>Hey Shreejal👉👈</h1>
+    <h1>Shrejjal👉👈</h1>
     <p class="small-text">
       I wanted to do a tiny something this Birthday,<br>
       because you mean a lot to me. 🥰💕
@@ -364,39 +334,44 @@
   </div>
   <!-- Songs -->
   <div id="songs-page" class="container">
-    <div class="header">
-      <p class="sub" style="font-size:1.3rem; color:#ff69b4; font-style: italic; margin-bottom:10px;">Soft, warm & full of feeling</p>
-      <h1>Songs That Feel Like Birthday<br>With You 🎶</h1>
+    <div class="title-bar">
+      <div class="traffic-lights">
+        <div class="light red"></div>
+        <div class="light yellow"></div>
+        <div class="light green"></div>
+      </div>
     </div>
-    <div class="songs" style="display: flex; flex-direction: column; gap: 25px; max-width: 600px; margin: 0 auto;">
-      <div class="song-card" id="card1" style="background: rgba(255,255,255,0.9); border-radius: 20px; padding: 20px; box-shadow: 0 10px 30px rgba(255,105,180,0.2); display: flex; align-items: center; gap: 20px; transition: transform 0.3s;">
-        <div class="thumbnail" style="width: 90px; height: 90px; border-radius: 16px; background: #ffb6c1; display: flex; align-items: center; justify-content: center; font-size: 3rem; box-shadow: inset 0 5px 15px rgba(0,0,0,0.1);">🐱</div>
-        <div class="info" style="flex: 1; text-align: left;">
+    <p class="sub" style="font-size:1.3rem; color:#ff69b4; font-style: italic; margin-bottom:10px;">Soft, warm & full of feeling</p>
+    <h1>Songs That Feel Like Birthday<br>With You 🎶</h1>
+    <div class="songs">
+      <div class="song-card" id="card1">
+        <div class="thumbnail">🐱</div>
+        <div class="info">
           <button class="song-title-btn" onclick="playSong('highOnYou', 'card1')">High On You</button>
-          <p class="status" id="status1" style="font-size: 0.9rem; color: #666; margin-bottom: 8px; min-height: 20px; font-style: italic;"></p>
-          <div class="timer" style="font-size: 0.85rem; color: #888; background: #fff0f5; padding: 4px 10px; border-radius: 20px; display: inline-block; margin-bottom: 10px;">00:00 / 00:00</div>
-          <div class="progress" style="height: 6px; background: #ffebee; border-radius: 3px; overflow: hidden; margin-bottom: 8px;"><div class="progress-bar" id="progress1" style="height: 100%; width: 0%; background: linear-gradient(90deg, #ff4081, #f50057); transition: width 0.3s;"></div></div>
-          <p class="reel-text" style="font-size: 0.8rem; color: #999; text-align: center; font-style: italic;">REEL TO REEL</p>
+          <p class="status" id="status1"></p>
+          <div class="timer">00:00 / 00:00</div>
+          <div class="progress"><div class="progress-bar" id="progress1"></div></div>
+          <p class="reel-text">REEL TO REEL</p>
         </div>
       </div>
-      <div class="song-card" id="card2" style="background: rgba(255,255,255,0.9); border-radius: 20px; padding: 20px; box-shadow: 0 10px 30px rgba(255,105,180,0.2); display: flex; align-items: center; gap: 20px; transition: transform 0.3s;">
-        <div class="thumbnail" style="width: 90px; height: 90px; border-radius: 16px; background: #ffb6c1; display: flex; align-items: center; justify-content: center; font-size: 3rem; box-shadow: inset 0 5px 15px rgba(0,0,0,0.1);">🎂</div>
-        <div class="info" style="flex: 1; text-align: left;">
+      <div class="song-card" id="card2">
+        <div class="thumbnail">🎂</div>
+        <div class="info">
           <button class="song-title-btn" onclick="playSong('forAReason', 'card2')">For a Reason</button>
-          <p class="status" id="status2" style="font-size: 0.9rem; color: #666; margin-bottom: 8px; min-height: 20px; font-style: italic;"></p>
-          <div class="timer" style="font-size: 0.85rem; color: #888; background: #fff0f5; padding: 4px 10px; border-radius: 20px; display: inline-block; margin-bottom: 10px;">00:00 / 00:00</div>
-          <div class="progress" style="height: 6px; background: #ffebee; border-radius: 3px; overflow: hidden; margin-bottom: 8px;"><div class="progress-bar" id="progress2" style="height: 100%; width: 0%; background: linear-gradient(90deg, #ff4081, #f50057); transition: width 0.3s;"></div></div>
-          <p class="reel-text" style="font-size: 0.8rem; color: #999; text-align: center; font-style: italic;">REEL TO REEL</p>
+          <p class="status" id="status2"></p>
+          <div class="timer">00:00 / 00:00</div>
+          <div class="progress"><div class="progress-bar" id="progress2"></div></div>
+          <p class="reel-text">REEL TO REEL</p>
         </div>
       </div>
-      <div class="song-card" id="card3" style="background: rgba(255,255,255,0.9); border-radius: 20px; padding: 20px; box-shadow: 0 10px 30px rgba(255,105,180,0.2); display: flex; align-items: center; gap: 20px; transition: transform 0.3s;">
-        <div class="thumbnail" style="width: 90px; height: 90px; border-radius: 16px; background: #ffb6c1; display: flex; align-items: center; justify-content: center; font-size: 3rem; box-shadow: inset 0 5px 15px rgba(0,0,0,0.1);">🐹</div>
-        <div class="info" style="flex: 1; text-align: left;">
+      <div class="song-card" id="card3">
+        <div class="thumbnail">🐹</div>
+        <div class="info">
           <button class="song-title-btn" onclick="playSong('dilKaJoHaal', 'card3')">Dil ka Jo Haal hai</button>
-          <p class="status" id="status3" style="font-size: 0.9rem; color: #666; margin-bottom: 8px; min-height: 20px; font-style: italic;"></p>
-          <div class="timer" style="font-size: 0.85rem; color: #888; background: #fff0f5; padding: 4px 10px; border-radius: 20px; display: inline-block; margin-bottom: 10px;">00:00 / 00:00</div>
-          <div class="progress" style="height: 6px; background: #ffebee; border-radius: 3px; overflow: hidden; margin-bottom: 8px;"><div class="progress-bar" id="progress3" style="height: 100%; width: 0%; background: linear-gradient(90deg, #ff4081, #f50057); transition: width 0.3s;"></div></div>
-          <p class="reel-text" style="font-size: 0.8rem; color: #999; text-align: center; font-style: italic;">REEL TO REEL</p>
+          <p class="status" id="status3"></p>
+          <div class="timer">00:00 / 00:00</div>
+          <div class="progress"><div class="progress-bar" id="progress3"></div></div>
+          <p class="reel-text">REEL TO REEL</p>
         </div>
       </div>
     </div>
@@ -505,13 +480,13 @@ Mistakes ki toh pucho he matt....mai batate batate ade se jada bhul he jaunga!!!
         <div class="light green"></div>
       </div>
     </div>
-    <h1>A Birthday Note 🎂💖</h1>
+    <h1>A Birthday Note for madam jii 🎂💖</h1>
     <div class="diary-book" id="diaryBook">
       <div class="page" style="z-index:4;">Dear Shreejal...</div>
-      <div class="page right" style="z-index:3;"></div>
-      <div class="page" style="z-index:2;"></div>
+      <div class="page right" style="z-index:3;">Every moment with you feels so special...</div>
+      <div class="page" style="z-index:2;">Your smile, your laugh, everything...</div>
       <div class="page right final-message" id="finalPage" style="z-index:1;">
-Wishing you a very very HAPPY BIRTHDAY SHREEJAL 💖✨..Every moment with you feels so special..Your smile, your laugh, everything...
+Wishing you a very very HAPPY BIRTHDAY KIKU 💖✨
 ......I hope tumhe mere yeh thore se efforts pasnd aaye ...
 and please if you find it creapy then mujhko maaf kr dena please🙏😭😭
       </div>
@@ -527,8 +502,8 @@ and please if you find it creapy then mujhko maaf kr dena please🙏😭😭
         <div class="light green"></div>
       </div>
     </div>
-    <h1>Accha!! One Last Thing... 🥺</h1>
-    <p class="small-text" style="font-size:1.6rem;">Mujhe v apni birthday party mai bula ne nah!!!!🥺🥺</p>
+    <h1>One Last Thing... 🥺</h1>
+    <p class="small-text" style="font-size:1.6rem;">mujhe bhi apni birthday party mai bula ne nah please🥺🥺</p>
     <button class="gift-btn" onclick="celebrateYes()">YES 🎉</button>
     <button class="gift-btn" id="noBtn" onclick="handleNo()" style="background: linear-gradient(135deg, #f44336, #e57373);">NO 😔</button>
     <p id="warning" style="display:none; color:#f44336; font-size:1.4rem; margin-top:20px; font-weight:bold;">SOCH LE.....!!! thora sa dimag ka istamal kr n</p>
@@ -588,36 +563,15 @@ and please if you find it creapy then mujhko maaf kr dena please🙏😭😭
     }
     function showFriendsPage() {
       transitionFromTo("share-page", "friends-notebook");
-      setTimeout(() => {
-        const notebook = document.querySelector('#friends-notebook .notebook');
-        const writing = document.querySelector('#friends-notebook .writing');
-        notebook.classList.add('show');
-        writing.classList.remove('typing');
-        void writing.offsetWidth; // Trigger reflow to restart animation
-        writing.classList.add('typing');
-      }, 300);
+      setTimeout(() => document.querySelector('#friends-notebook .notebook').classList.add('show'), 300);
     }
     function showRememberPage() {
       transitionFromTo("share-page", "remember-notebook");
-      setTimeout(() => {
-        const notebook = document.querySelector('#remember-notebook .notebook');
-        const writing = document.querySelector('#remember-notebook .writing');
-        notebook.classList.add('show');
-        writing.classList.remove('typing');
-        void writing.offsetWidth;
-        writing.classList.add('typing');
-      }, 300);
+      setTimeout(() => document.querySelector('#remember-notebook .notebook').classList.add('show'), 300);
     }
     function showMistakesPage() {
       transitionFromTo("share-page", "mistakes-notebook");
-      setTimeout(() => {
-        const notebook = document.querySelector('#mistakes-notebook .notebook');
-        const writing = document.querySelector('#mistakes-notebook .writing');
-        notebook.classList.add('show');
-        writing.classList.remove('typing');
-        void writing.offsetWidth;
-        writing.classList.add('typing');
-      }, 300);
+      setTimeout(() => document.querySelector('#mistakes-notebook .notebook').classList.add('show'), 300);
     }
     function goBackToShare() {
       document.querySelectorAll('.notebook-page').forEach(page => {
@@ -626,7 +580,6 @@ and please if you find it creapy then mujhko maaf kr dena please🙏😭😭
         const notebook = page.querySelector('.notebook');
         if (notebook) notebook.classList.remove('show');
       });
-      document.querySelectorAll('.writing').forEach(w => w.classList.remove('typing'));
       setTimeout(() => {
         document.querySelectorAll('.notebook-page').forEach(page => page.style.display = "none");
         const share = document.getElementById("share-page");
@@ -703,7 +656,7 @@ and please if you find it creapy then mujhko maaf kr dena please🙏😭😭
     function celebrateYes() {
       const celebration = document.getElementById('celebration');
       celebration.style.display = 'block';
-      celebration.innerHTML = '<div class="celebration-text">🎉🥳🥳🎉✨</div>';
+      celebration.innerHTML = '<div class="celebration-text">🎉🥳 Happy vday KIKU 🥳🎉✨</div>';
       const gifs = [
         'https://media.tenor.com/YmAOhktmGbsAAAAC/dancing-cat.gif',
         'https://media.tenor.com/2tBAp0I0K4oAAAAC/happy-dance.gif',
@@ -720,6 +673,7 @@ and please if you find it creapy then mujhko maaf kr dena please🙏😭😭
         img.style.animationDelay = i * 0.5 + 's';
         celebration.appendChild(img);
       });
+      // Disable NO button after YES
       document.getElementById('noBtn').disabled = true;
     }
     function handleNo() {
@@ -733,5 +687,3 @@ and please if you find it creapy then mujhko maaf kr dena please🙏😭😭
   </script>
 </body>
 </html>
-
-
