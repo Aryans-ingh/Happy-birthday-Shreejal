@@ -97,8 +97,8 @@
     #note { opacity: 0; transform: scale(0.9); background: rgba(255,240,245,0.9); border: 4px solid #ff69b4; border-radius: 30px; padding: 60px 40px; }
     .note-card { background: rgba(255,255,255,0.95); border-radius: 20px; padding: 40px 30px; box-shadow: 0 10px 30px rgba(255,105,180,0.3); position: relative; text-align: left; }
     .badge { position: absolute; top: -20px; left: 50%; transform: translateX(-50%); background: linear-gradient(135deg, #ff4081, #f50057); color: white; padding: 8px 25px; border-radius: 30px; font-size: 1.1rem; font-weight: bold; box-shadow: 0 5px 15px rgba(244,67,54,0.5); white-space: nowrap; }
-    #songs-page { opacity: 0; transform: scale(0.9); text-align: center; z-index: 2; padding: 40px 20px; }
-    .songs { display: flex; flex-direction: column; gap: 25px; max-width: 600px; margin: 0 auto; }
+    #songs-page { opacity: 0; transform: scale(0.9); text-align: center; z-index: 2; padding: 50px 35px 40px; }
+    .songs { display: flex; flex-direction: column; gap: 25px; max-width: 450px; margin: 0 auto; }
     .song-card { background: rgba(255,255,255,0.9); border-radius: 20px; padding: 20px; box-shadow: 0 10px 30px rgba(255,105,180,0.2); display: flex; align-items: center; gap: 20px; transition: transform 0.3s; }
     .song-card:hover { transform: scale(1.03); }
     .thumbnail { width: 90px; height: 90px; border-radius: 16px; background: #ffb6c1; display: flex; align-items: center; justify-content: center; font-size: 3rem; box-shadow: inset 0 5px 15px rgba(0,0,0,0.1); }
@@ -110,7 +110,7 @@
     .progress { height: 6px; background: #ffebee; border-radius: 3px; overflow: hidden; margin-bottom: 8px; }
     .progress-bar { height: 100%; width: 0%; background: linear-gradient(90deg, #ff4081, #f50057); transition: width 0.3s; }
     .reel-text { font-size: 0.8rem; color: #999; text-align: center; font-style: italic; }
-    #share-page { opacity: 0; transform: scale(0.9); background: rgba(255,240,245,0.9); border: 4px solid #ff69b4; border-radius: 30px; padding: 60px 40px; }
+    #share-page { opacity: 0; transform: scale(0.9); background: rgba(255,240,245,0.9); border: 4px solid #ff69b4; border-radius: 30px; padding: 50px 35px 40px; }
     #share-page h1 { font-size: 3.8rem; color: #c2185b; margin: 20px 0 40px; }
     .notebook-page {
       opacity: 0;
@@ -120,8 +120,15 @@
       background-color: rgba(255,245,238,0.85);
       border: 4px solid #d7ccc8;
       border-radius: 30px;
-      padding: 60px 40px;
+      padding: 50px 35px 40px;
       overflow-y: auto;
+      display: none;
+      position: relative;
+      width: 90%;
+      max-width: 520px;
+      box-shadow: 0 25px 70px rgba(0,0,0,0.18);
+      z-index: 2;
+      text-align: center;
     }
     .notebook {
       background: rgba(255,253,240,0.95);
@@ -168,7 +175,7 @@
       display: block;
     }
     .back-btn:hover { transform: scale(1.1); box-shadow: 0 18px 45px rgba(244,67,54,0.6); }
-    #envelope-page { opacity: 0; transform: scale(0.9); background: rgba(255,240,245,0.9); border: 4px solid #ff69b4; border-radius: 30px; padding: 60px 40px; }
+    #envelope-page { opacity: 0; transform: scale(0.9); background: rgba(255,240,245,0.9); border: 4px solid #ff69b4; border-radius: 30px; padding: 50px 35px 40px; }
     .envelope {
       width: 320px;
       height: 220px;
@@ -202,7 +209,7 @@
       color: #fff;
       text-shadow: 0 0 15px rgba(255,255,255,0.8);
     }
-    #diary-page { opacity: 0; transform: scale(0.9); background: rgba(255,240,245,0.9); border: 4px solid #ff69b4; border-radius: 30px; padding: 60px 40px; }
+    #diary-page { opacity: 0; transform: scale(0.9); background: rgba(255,240,245,0.9); border: 4px solid #ff69b4; border-radius: 30px; padding: 50px 35px 40px; }
     .diary-book {
       width: 90%;
       max-width: 460px;
@@ -242,7 +249,7 @@
       color: #c2185b;
       text-shadow: 1px 1px 3px rgba(0,0,0,0.1);
     }
-    #final-question-page { opacity: 0; transform: scale(0.9); background: rgba(255,240,245,0.9); border: 4px solid #ff69b4; border-radius: 30px; padding: 60px 40px; }
+    #final-question-page { opacity: 0; transform: scale(0.9); background: rgba(255,240,245,0.9); border: 4px solid #ff69b4; border-radius: 30px; padding: 50px 35px 40px; }
     #celebration { display: none; position: fixed; inset: 0; background: rgba(255,245,238,0.85); z-index: 999; overflow: hidden; pointer-events: none; }
     .celebration-text { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 6rem; color: #e91e63; text-shadow: 3px 3px 10px rgba(0,0,0,0.2); animation: bounce 2s infinite; }
     .celebration-gif { position: absolute; width: 150px; opacity: 0.9; pointer-events: none; animation: bounce 2s infinite; }
@@ -253,7 +260,7 @@
 <body>
   <div class="bokeh" id="bokeh"></div>
   <!-- Cat stickers -->
-  
+ 
   <!-- Intro -->
   <div id="intro" class="container">
     <div class="title-bar">
@@ -327,39 +334,44 @@
   </div>
   <!-- Songs -->
   <div id="songs-page" class="container">
-    <div class="header">
-      <p class="sub" style="font-size:1.3rem; color:#ff69b4; font-style: italic; margin-bottom:10px;">Soft, warm & full of feeling</p>
-      <h1>Songs That Feel Like Birthday<br>With You 🎶</h1>
+    <div class="title-bar">
+      <div class="traffic-lights">
+        <div class="light red"></div>
+        <div class="light yellow"></div>
+        <div class="light green"></div>
+      </div>
     </div>
-    <div class="songs" style="display: flex; flex-direction: column; gap: 25px; max-width: 600px; margin: 0 auto;">
-      <div class="song-card" id="card1" style="background: rgba(255,255,255,0.9); border-radius: 20px; padding: 20px; box-shadow: 0 10px 30px rgba(255,105,180,0.2); display: flex; align-items: center; gap: 20px; transition: transform 0.3s;">
-        <div class="thumbnail" style="width: 90px; height: 90px; border-radius: 16px; background: #ffb6c1; display: flex; align-items: center; justify-content: center; font-size: 3rem; box-shadow: inset 0 5px 15px rgba(0,0,0,0.1);">🐱</div>
-        <div class="info" style="flex: 1; text-align: left;">
-          <button class="song-title-btn" style="background: none; border: none; font-size: 1.4rem; color: #c2185b; font-weight: 600; cursor: pointer; text-align: left; padding: 0; margin-bottom: 8px; transition: color 0.3s;" onclick="playSong('highOnYou', 'card1')">High On You</button>
-          <p class="status" id="status1" style="font-size: 0.9rem; color: #666; margin-bottom: 8px; min-height: 20px; font-style: italic;"></p>
-          <div class="timer" style="font-size: 0.85rem; color: #888; background: #fff0f5; padding: 4px 10px; border-radius: 20px; display: inline-block; margin-bottom: 10px;">00:00 / 00:00</div>
-          <div class="progress" style="height: 6px; background: #ffebee; border-radius: 3px; overflow: hidden; margin-bottom: 8px;"><div class="progress-bar" id="progress1" style="height: 100%; width: 0%; background: linear-gradient(90deg, #ff4081, #f50057); transition: width 0.3s;"></div></div>
-          <p class="reel-text" style="font-size: 0.8rem; color: #999; text-align: center; font-style: italic;">REEL TO REEL</p>
+    <p class="sub" style="font-size:1.3rem; color:#ff69b4; font-style: italic; margin-bottom:10px;">Soft, warm & full of feeling</p>
+    <h1>Songs That Feel Like Birthday<br>With You 🎶</h1>
+    <div class="songs">
+      <div class="song-card" id="card1">
+        <div class="thumbnail">🐱</div>
+        <div class="info">
+          <button class="song-title-btn" onclick="playSong('highOnYou', 'card1')">High On You</button>
+          <p class="status" id="status1"></p>
+          <div class="timer">00:00 / 00:00</div>
+          <div class="progress"><div class="progress-bar" id="progress1"></div></div>
+          <p class="reel-text">REEL TO REEL</p>
         </div>
       </div>
-      <div class="song-card" id="card2" style="background: rgba(255,255,255,0.9); border-radius: 20px; padding: 20px; box-shadow: 0 10px 30px rgba(255,105,180,0.2); display: flex; align-items: center; gap: 20px; transition: transform 0.3s;">
-        <div class="thumbnail" style="width: 90px; height: 90px; border-radius: 16px; background: #ffb6c1; display: flex; align-items: center; justify-content: center; font-size: 3rem; box-shadow: inset 0 5px 15px rgba(0,0,0,0.1);">🎂</div>
-        <div class="info" style="flex: 1; text-align: left;">
-          <button class="song-title-btn" style="background: none; border: none; font-size: 1.4rem; color: #c2185b; font-weight: 600; cursor: pointer; text-align: left; padding: 0; margin-bottom: 8px; transition: color 0.3s;" onclick="playSong('forAReason', 'card2')">For a Reason</button>
-          <p class="status" id="status2" style="font-size: 0.9rem; color: #666; margin-bottom: 8px; min-height: 20px; font-style: italic;"></p>
-          <div class="timer" style="font-size: 0.85rem; color: #888; background: #fff0f5; padding: 4px 10px; border-radius: 20px; display: inline-block; margin-bottom: 10px;">00:00 / 00:00</div>
-          <div class="progress" style="height: 6px; background: #ffebee; border-radius: 3px; overflow: hidden; margin-bottom: 8px;"><div class="progress-bar" id="progress2" style="height: 100%; width: 0%; background: linear-gradient(90deg, #ff4081, #f50057); transition: width 0.3s;"></div></div>
-          <p class="reel-text" style="font-size: 0.8rem; color: #999; text-align: center; font-style: italic;">REEL TO REEL</p>
+      <div class="song-card" id="card2">
+        <div class="thumbnail">🎂</div>
+        <div class="info">
+          <button class="song-title-btn" onclick="playSong('forAReason', 'card2')">For a Reason</button>
+          <p class="status" id="status2"></p>
+          <div class="timer">00:00 / 00:00</div>
+          <div class="progress"><div class="progress-bar" id="progress2"></div></div>
+          <p class="reel-text">REEL TO REEL</p>
         </div>
       </div>
-      <div class="song-card" id="card3" style="background: rgba(255,255,255,0.9); border-radius: 20px; padding: 20px; box-shadow: 0 10px 30px rgba(255,105,180,0.2); display: flex; align-items: center; gap: 20px; transition: transform 0.3s;">
-        <div class="thumbnail" style="width: 90px; height: 90px; border-radius: 16px; background: #ffb6c1; display: flex; align-items: center; justify-content: center; font-size: 3rem; box-shadow: inset 0 5px 15px rgba(0,0,0,0.1);">🐹</div>
-        <div class="info" style="flex: 1; text-align: left;">
-          <button class="song-title-btn" style="background: none; border: none; font-size: 1.4rem; color: #c2185b; font-weight: 600; cursor: pointer; text-align: left; padding: 0; margin-bottom: 8px; transition: color 0.3s;" onclick="playSong('dilKaJoHaal', 'card3')">Dil ka Jo Haal hai</button>
-          <p class="status" id="status3" style="font-size: 0.9rem; color: #666; margin-bottom: 8px; min-height: 20px; font-style: italic;"></p>
-          <div class="timer" style="font-size: 0.85rem; color: #888; background: #fff0f5; padding: 4px 10px; border-radius: 20px; display: inline-block; margin-bottom: 10px;">00:00 / 00:00</div>
-          <div class="progress" style="height: 6px; background: #ffebee; border-radius: 3px; overflow: hidden; margin-bottom: 8px;"><div class="progress-bar" id="progress3" style="height: 100%; width: 0%; background: linear-gradient(90deg, #ff4081, #f50057); transition: width 0.3s;"></div></div>
-          <p class="reel-text" style="font-size: 0.8rem; color: #999; text-align: center; font-style: italic;">REEL TO REEL</p>
+      <div class="song-card" id="card3">
+        <div class="thumbnail">🐹</div>
+        <div class="info">
+          <button class="song-title-btn" onclick="playSong('dilKaJoHaal', 'card3')">Dil ka Jo Haal hai</button>
+          <p class="status" id="status3"></p>
+          <div class="timer">00:00 / 00:00</div>
+          <div class="progress"><div class="progress-bar" id="progress3"></div></div>
+          <p class="reel-text">REEL TO REEL</p>
         </div>
       </div>
     </div>
@@ -475,9 +487,7 @@ Mistakes ki toh pucho he matt....mai batate batate ade se jada bhul he jaunga!!!
       <div class="page" style="z-index:2;">Your smile, your laugh, everything...</div>
       <div class="page right final-message" id="finalPage" style="z-index:1;">
 Wishing you a very very HAPPY BIRTHDAY KIKU 💖✨
-
 ......I hope tumhe mere yeh thore se efforts pasnd aaye ...
-
 and please if you find it creapy then mujhko maaf kr dena please🙏😭😭
       </div>
     </div>
@@ -508,7 +518,6 @@ and please if you find it creapy then mujhko maaf kr dena please🙏😭😭
   <script>
     let currentAudio = null;
     let currentCardId = null;
-
     function createDot() {
       const dot = document.createElement("div");
       dot.classList.add("dot");
@@ -521,7 +530,6 @@ and please if you find it creapy then mujhko maaf kr dena please🙏😭😭
       setTimeout(() => dot.remove(), 45000);
     }
     setInterval(createDot, 700);
-
     function transitionFromTo(fromId, toId) {
       const from = document.getElementById(fromId);
       const to = document.getElementById(toId);
@@ -536,11 +544,9 @@ and please if you find it creapy then mujhko maaf kr dena please🙏😭😭
         }, 100);
       }, 1000);
     }
-
     function startGame() {
       transitionFromTo("intro", "game");
     }
-
     function placeCookie(cell) {
       cell.innerHTML = "✨";
       cell.style.background = "#fff0f5";
@@ -548,31 +554,25 @@ and please if you find it creapy then mujhko maaf kr dena please🙏😭😭
       cell.style.animation = "none";
       setTimeout(() => transitionFromTo("game", "note"), 800);
     }
-
     function showSongs() {
       transitionFromTo("note", "songs-page");
     }
-
     function showSharePage() {
       stopAllSongs();
       transitionFromTo("songs-page", "share-page");
     }
-
     function showFriendsPage() {
       transitionFromTo("share-page", "friends-notebook");
       setTimeout(() => document.querySelector('#friends-notebook .notebook').classList.add('show'), 300);
     }
-
     function showRememberPage() {
       transitionFromTo("share-page", "remember-notebook");
       setTimeout(() => document.querySelector('#remember-notebook .notebook').classList.add('show'), 300);
     }
-
     function showMistakesPage() {
       transitionFromTo("share-page", "mistakes-notebook");
       setTimeout(() => document.querySelector('#mistakes-notebook .notebook').classList.add('show'), 300);
     }
-
     function goBackToShare() {
       document.querySelectorAll('.notebook-page').forEach(page => {
         page.style.opacity = "0";
@@ -590,73 +590,59 @@ and please if you find it creapy then mujhko maaf kr dena please🙏😭😭
         }, 50);
       }, 800);
     }
-
     function playSong(audioId, cardId) {
       stopAllSongs();
-
       const audio = document.getElementById(audioId);
       const status = document.getElementById("status" + cardId.slice(-1));
       const progress = document.getElementById("progress" + cardId.slice(-1));
       const timer = document.querySelector(`#${cardId} .timer`);
-
       if (!audio) {
         status.textContent = "Sorry, song can't be loaded... 😿";
         return;
       }
-
       currentAudio = audio;
       currentCardId = cardId;
-
       audio.play().then(() => {
         status.textContent = "Now playing ♡";
       }).catch(e => {
         console.error(e);
         status.textContent = "Can't play (probably CORS or network issue) 😿";
       });
-
       audio.ontimeupdate = () => {
         if (audio.duration) {
           const percent = (audio.currentTime / audio.duration) * 100;
           progress.style.width = percent + "%";
-
           const current = formatTime(audio.currentTime);
           const total = formatTime(audio.duration);
           timer.textContent = `${current} / ${total}`;
         }
       };
-
       audio.onended = () => {
         status.textContent = "Finished ♡";
         progress.style.width = "0%";
         timer.textContent = "00:00 / " + formatTime(audio.duration);
       };
     }
-
     function stopAllSongs() {
       document.querySelectorAll('audio').forEach(a => {
         a.pause();
         a.currentTime = 0;
       });
-
       document.querySelectorAll('.status').forEach(s => {
         s.textContent = "";
       });
-
       document.querySelectorAll('.progress-bar').forEach(p => {
         p.style.width = "0%";
       });
     }
-
     function formatTime(seconds) {
       const min = Math.floor(seconds / 60);
       const sec = Math.floor(seconds % 60);
       return `${min.toString().padStart(2,'0')}:${sec.toString().padStart(2,'0')}`;
     }
-
     function goToEnvelope() {
       transitionFromTo("share-page", "envelope-page");
     }
-
     function openDiary() {
       transitionFromTo("envelope-page", "diary-page");
       const pages = document.querySelectorAll('.diary-book .page');
@@ -664,11 +650,9 @@ and please if you find it creapy then mujhko maaf kr dena please🙏😭😭
       setTimeout(() => pages[1].classList.add('flipped'), 2000);
       setTimeout(() => pages[2].classList.add('flipped'), 3000);
     }
-
     function goToFinalQuestion() {
       transitionFromTo("diary-page", "final-question-page");
     }
-
     function celebrateYes() {
       const celebration = document.getElementById('celebration');
       celebration.style.display = 'block';
@@ -692,7 +676,6 @@ and please if you find it creapy then mujhko maaf kr dena please🙏😭😭
       // Disable NO button after YES
       document.getElementById('noBtn').disabled = true;
     }
-
     function handleNo() {
       document.getElementById('warning').style.display = 'block';
       document.getElementById('noBtn').style.animation = 'shake 0.8s';
@@ -704,4 +687,3 @@ and please if you find it creapy then mujhko maaf kr dena please🙏😭😭
   </script>
 </body>
 </html>
-
